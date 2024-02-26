@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Set the global font family */
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #2196F3; /* Blue color */
+  border-radius: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #0a5ebd; /* Darker blue color on hover */
+}
+
+@layer utilities {
+    .bg-custom-gradient {
+      background: radial-gradient(ellipse, #002E00 0%, #00FD00 50%, #002E00 100%);
+    }
+  }
+
+  .audio-player {
+    background-color: #3B82F6; /* Blue background color */
+    color: #ffffff; /* White text color */
+    border-radius: 8px; /* Rounded corners */
+    padding: 10px; /* Add padding */
+    width: 300px; /* Adjust width as needed */
+  }
+
+  .audio-player::-webkit-media-controls-panel {
+    background-color: #3B82F6; 
+    color: #ffffff; 
+    border-radius: 8px; 
+    padding: 10px; 
+  }
+
+  .audio-player::-webkit-media-controls-play-button {
+    color: #ffffff; /* White play button color */
+  }
+
+  .audio-player::-webkit-media-controls-volume-slider {
+    background-color: #3B82F6;; 
+  }
+
+
+  
