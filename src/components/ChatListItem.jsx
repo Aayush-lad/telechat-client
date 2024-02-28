@@ -11,15 +11,6 @@ import { useRouter } from 'next/router';
 const ChatListItem = () => {
 
   const [{userInfo,userContacts,onlineUsers,isSearch,search},dispatch] = useStateProvider();
-  
-
-  
-
-
-
-
-
-
   useEffect(()=>{
     const getContacts = async()=>{
        try{ 

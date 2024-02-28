@@ -19,17 +19,17 @@ const Container = ({data}) => {
 
     const leave = async()=>{
         if(data.callType == "voice"){
-            await channelParameters.localAudioTrack.stop();
-            await channelParameters.localAudioTrack.close();
-            await agoraEngine.leave();
+            await channelParameters?.localAudioTrack?.stop();
+            await channelParameters?.localAudioTrack?.close();
+            await agoraEngine?.leave();
         }
 
         if(data.callType === "video"){
-            await channelParameters.localVideoTrack.stop();
-            await channelParameters.localAudioTrack.stop();
-            await channelParameters.localAudioTrack.close();
-            await channelParameters.localVideoTrack.close();
-            await agoraEngine.leave();
+            await channelParameters?.localVideoTrack?.stop();
+            await channelParameters?.localAudioTrack?.stop();
+            await channelParameters?.localAudioTrack?.close();
+            await channelParameters?.localVideoTrack?.close();
+            await agoraEngine?.leave();
             
         }
 
@@ -163,20 +163,20 @@ const Container = ({data}) => {
                 if(data.callType == "voice")
                 {
                     if(channelParameters){
-                    await channelParameters.localAudioTrack.stop();
-                    await channelParameters.localAudioTrack.close();
+                    await channelParameters?.localAudioTrack?.stop();
+                    await channelParameters?.localAudioTrack?.close();
                     }
-                    await agoraEngine.leave();
+                    await agoraEngine?.leave();
                 }
 
                 if(data.callType === "video"){
                     if(global.channelParameters){
-                    await global.channelParameters.localVideoTrack.stop();
-                    await global.channelParameters.localAudioTrack.stop();
-                    await global.channelParameters.localAudioTrack.close();
-                    await global.channelParameters.localVideoTrack.close();
+                    await global.channelParameters?.localVideoTrack?.stop();
+                    await global.channelParameters?.localAudioTrack?.stop();
+                    await global.channelParameters?.localAudioTrack?.close();
+                    await global.channelParameters?.localVideoTrack?.close();
                     
-                    await agoraEngine.leave();
+                    await agoraEngine?.leave();
                     }
                   
                     
@@ -196,12 +196,12 @@ const Container = ({data}) => {
             if (localAudioTrack) {
                 if (!isMutedAudio) {
                     // If not muted, mute the microphone
-                    localAudioTrack.setMuted(true)
+                    localAudioTrack?.setMuted(true)
                     console.log("Microphone muted");
                     setIsMutedAudio((prev)=> !prev);
                 } else {
                     // If already muted, unmute the microphone
-                    localAudioTrack.setMuted(false);
+                    localAudioTrack?.setMuted(false);
                     console.log("Microphone unmuted");
                     setIsMutedAudio((prev)=> !prev);
                 }

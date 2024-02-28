@@ -5,7 +5,7 @@ const nextConfig = {
     
 
     images: {
-        domains: ['localhost'], // Add 'localhost' to the list of domains
+        domains: ['localhost','telechat-server-3l6y.onrender.com','telechat.blob.core.windows.net'], // Add 'localhost' to the list of domains
       },
 
       env:{

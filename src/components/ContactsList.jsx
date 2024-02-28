@@ -4,6 +4,7 @@ import { BiArrowBack, BiSearchAlt2 } from 'react-icons/bi'
 import { useStateProvider } from '../context/StateContext'
 import { reducerCases } from '../context/Cases'
 import ChatItem from './ChatItem'
+import { GET_ALL_CONTACTS } from '../utils/AuthRoutes'
 
 
 
@@ -20,7 +21,7 @@ const ContactsList = () => {
         const getContacts=async()=>{
 
             try{
-            const {data:{users}} = await axios.get("http://localhost:5000/api/auth/get-contacts")
+            const {data:{users}} = await axios.get(`${GET_ALL_CONTACTS}`)
             setContacts(users)
             console.log(users)
             }

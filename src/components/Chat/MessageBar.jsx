@@ -8,7 +8,7 @@ import { ADD_MESSAGE_ROUTE,ADD_IMAGE_MESSAGE_ROUTE } from '@/src/utils/AuthRoute
 import {reducerCases} from "../../context/Cases"
 import PhotoPicker from '../PhotoPicker'
 import { FaMicrophone } from 'react-icons/fa'
-import CaptureAudio from './CaptureAudio'
+
 
 import EmojiPicker from 'emoji-picker-react'
 // Message Bar
@@ -20,7 +20,7 @@ const MessageBar = () => {
   const [message,setMessage]=useState('') 
   const [emojiPicker,showEmojiPicker] = useState(false)
   const [grabPhoto, setGrabPhoto] = useState(false)
-  const [audioRecorder, setAudioRecorder] = useState(false)
+  
 
   const emojiRef = useRef(null)
 
@@ -121,6 +121,8 @@ catch{
          message
        })
 
+       console.log(data)
+
        socket.current.emit('send-msg',{
         to:currentChatUser?.id,
         from:userInfo?.id,
@@ -150,7 +152,7 @@ catch{
     <div className='h-20 px-4 flex items-center gap-6 bg-blue-600 relative'>
 
       
-      { !audioRecorder &&(
+      
         <>
         <div  className="flex gap-6">
             <BsEmojiSmile className='text-white text-2xl cursor-pointer' title="emoji"
@@ -159,9 +161,9 @@ catch{
             />
 
             {emojiPicker && 
-            <div className="absolute bottom-24 left-16 z-40 cursor-pointer" id ="emoji-opener" >
+            <div className="absolute bottom-24 left-13 z-40 cursor-pointer" id ="emoji-opener" >
 
-                <EmojiPicker onEmojiClick = {handleEmoji} ref={emojiRef}/>
+                <EmojiPicker onEmojiClick = {handleEmoji} ref={emojiRef} height={400} width={250}/>
 
 
             </div>
@@ -179,21 +181,17 @@ catch{
 
         <div className="flex w-10 items-center justify-center">
 
-          {message.length?(
+         
           <button>
             <MdSend className='text-white text-2xl' title="send message" onClick={sendMessage}/>
             </button>
-          ):(
-          <button  >
-              <FaMicrophone className='text-white text-2xl' title="record audio" onClick={()=> setAudioRecorder(true)} />
-            </button>
-            )}
+        
         </div>
 
         </>
-      )}
+      
         {grabPhoto && <PhotoPicker onChange={photopickerchange}/>}
-        {audioRecorder && <CaptureAudio hide={()=>setAudioRecorder(false)} />}
+ 
         
 
     </div>

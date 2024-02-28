@@ -30,11 +30,7 @@ const ChatContainer = () => {
     return dateOnly;
   }
 
-  useEffect(()=>{
-    const myDiv = document.getElementById('chat-container');
-    console.log(myDiv);
-    myDiv.scrollTop = myDiv.scrollHeight;
-  },[messages])
+
 
   const checkNewDay = (current, previous)=>{
     current = dateExtract(current);
@@ -79,7 +75,9 @@ const ChatContainer = () => {
 
           <div key={index} className={`flex flex-col space-y-2 ${message.senderId === userInfo?.id ? 'items-end' : 'items-start'}`}>
 
-            {message.type == "text" && (
+            {message.type == "text" && !message.message.startsWith("https://telechat.blob.core.windows.net/telechat/")&&(
+
+
             <div id={message.Id} className={`p-2 rounded-lg max-w-[200px] ${message.senderId === userInfo.id ? 'bg-blue-500 text-white' : 'bg-white text-black'}`}>
               {message.message}
             </div>
@@ -88,20 +86,29 @@ const ChatContainer = () => {
             {message.type == "image" && (
               
               <div className={`p-2 rounded-lg max-w-[400px] ${message.senderId === userInfo.id ? 'bg-blue-500 text-white' : 'bg-white text-black'}`} id={message.Id}>
-                <Image src={ `${HOST}/${message.message}`} alt="image" width={500} height={500} className='w-full h-auto rounded-lg'/>
-                {console.log(`${HOST}/${message.message}`)}
+               
+            {message.message.startsWith("https://telechat.blob.core.windows.net/telechat/") &&
+                <Image src={ `${message.message}`} alt="image" width={500} height={500} className='w-full h-auto rounded-lg'/>
+            }
               </div>
             )}
 
             {message.type == "audio" && (
+              
+             
               <div id={message.Id}>
+                 {message.message.startsWith("https://telechat.blob.core.windows.net/telechat/") &&
                 <audio src={`${HOST}/${message.message}`} controls className={`${message.senderId === userInfo?.id ? "audio-player":"bg-[#F1F3F4] p-3" }`}/>
-
+                }
               </div>
+            
             )}
             <div className={`text-xs ${message.senderId === userInfo.id ? 'text-right' : 'text-left'}`} id={message.Id}>
               {/* time and sender you or current user */}   
+
+              {!message.message.startsWith("https://telechat.blob.core.windows.net/") &&
               <span>{timeExtract(message.createdAt)} </span>
+            }
             </div>
           </div>
           </>

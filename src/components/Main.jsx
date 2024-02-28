@@ -17,7 +17,6 @@ import IncomingVoiceCall from './Call/IncomingVoiceCall'
 import IncomingVideoCall from './Call/IncomingVideoCall'
 import Skeleton from 'react-loading-skeleton';
 
-
 const Main = () => {
 
   const HOST ="https://telechat-server-3l6y.onrender.com"
@@ -90,10 +89,13 @@ const Main = () => {
 
 const socket = useRef(null);
 useEffect(()=>{
+  console.log(userInfo)
 
-  if(userInfo){
+  if(userInfo?.id){
+
     socket.current = io(HOST)
     socket.current.emit("add-user", userInfo.id)
+
     dispatch({
       type:reducerCases.SET_SOCKET,
       socket
@@ -109,7 +111,7 @@ useEffect(()=>{
 
       
 
-      console.log(data.message.Id,prevmsgid);
+      
       dispatch({
         type:reducerCases.ADD_MESSAGE,
         newMessage:{
@@ -150,12 +152,15 @@ useEffect(()=>{
     })
 
 
-    socket.current.on("online-users",({onlineUsers})=>{
+    socket.current.on("online-users",(onlineUsers)=>{
+      console.log(onlineUsers)
       dispatch({
         type:reducerCases.SET_ONLINE_USERS,
         onlineUsers
       })
     })
+
+
     setSocketEvent(true)
   }
 }

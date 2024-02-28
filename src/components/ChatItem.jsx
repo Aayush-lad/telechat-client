@@ -142,13 +142,10 @@ const ChatItem = ({data,isContactPage=false}) => {
 
                 {isContactPage && <span className="text-sm">{data?.about}</span>}
 
-                {!isContactPage  && <span className="text-sm">
-                    {data.type ==="audio" && <div className='flex gap-2'><FaMicrophone/> Audio</div> }
-                    {data.type ==="image" &&<div className='flex gap-2'> <FaCamera/> "Image"</div>}
-                    {data.type === "text" &&<div>{data.message.length >10 ?data.message.substring(0,10)+ "...": data.message}</div>}
+                {!isContactPage  && <span className="text-sm ">
+                    {data.type ==="image" || data.message.startsWith("https://") &&<div className='flex gap-2'> <FaCamera/> Image</div>}
+                    {data.type === "text" && !data.message.startsWith("https://")&&<div>{data.message.length >10 ?data.message.substring(0,10)+ "...": data.message}</div>}
                 </span>}
-
-             
             </div>
         </div>
         </>
